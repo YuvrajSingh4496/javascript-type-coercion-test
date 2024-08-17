@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import './App.css';
 import OperationManager from './classes/operation-manager';
 import _ from "lodash";
 import GitHubButton from './components/github-button';
 import Checkbox from './components/checkbox';
+import { formatString } from './lib/helpers';
 
 function App() {
   const [start, setStart] = useState(false);
@@ -11,7 +11,8 @@ function App() {
   const [choice, setChoice] = useState<boolean|null>(null);
   const [response, setResponse] = useState({
     success: false,
-    text: ''
+    text: '',
+    finished: false
   });
   const [hard, setHard] = useState(false);
   const [streak, setStreak] = useState(0);
@@ -19,12 +20,13 @@ function App() {
   useEffect(() => {
     setOperation(new OperationManager().makeRandom(1, hard ? 5 : 1));
   }, [start]);
-  
+
   function nextOperation() {
     setOperation(new OperationManager().makeRandom(1, hard ? 5 : 1));
     setResponse({
       success: false,
-      text: ''
+      text: '',
+      finished: false
     });
     setChoice(null);
   }
@@ -33,14 +35,16 @@ function App() {
     if (choice === null) {
       return setResponse({
         success: false,
-        text: "Please choose an option first!"
+        text: "Please choose an option first!",
+        finished: false
       });
     }
 
     const res = operation?.evaluate(choice); 
     setResponse({
       success: !!res,
-      text: res ? "You are correct!" : "You are wrong!"
+      text: res ? "You are correct!" : "You are wrong!",
+      finished: true
     });
     
     setStreak(prev => res ? prev + 1: 0);
@@ -56,10 +60,14 @@ function App() {
     );
   }
 
+
   return (
-      <div className="flex flex-col justify-center items-center h-[90vh] gap-5">
+      <div className="flex flex-col justify-center items-center min-h-[90vh] gap-5 py-5">
         <p>Is this correct?</p>
-        <h1 className="text-xl md:text-5xl">{operation?.toString()}</h1>
+        <h1
+          dangerouslySetInnerHTML={{ __html: formatString(operation?.toString() ?? '') }} 
+          className={`text-xl md:${(operation?.toString()?.length ?? ''.length) > 40 ? 'text-xl' : 'text-5xl'} max-w-[80vw]`}
+        ></h1>
 
         <div className="flex flex-row gap-1">
           <button 
@@ -79,10 +87,11 @@ function App() {
 
         <div className="flex flex-row gap-1">
 
-          <button className="px-3 py-2 rounded-md border-2 border-white" onClick={evaluate}>Submit</button>
-          {response.text.length ? (
+          {response.finished ? (
             <button className="px-3 py-2 rounded-md border-2 border-white" onClick={nextOperation}>Next</button>
-          ) : <></>}
+          ) : (
+            <button className="px-3 py-2 rounded-md border-2 border-white" onClick={evaluate}>Submit</button>
+          )}
         </div>
         <GitHubButton />
 
