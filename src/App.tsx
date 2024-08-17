@@ -36,7 +36,7 @@ function App() {
   if (!start) {
     return (
       <div className="flex flex-col justify-center items-center h-[100vh] gap-5">
-        <h1>Javasript Type Coercion Test</h1>
+        <h1 className="text-xl md:text-5xl">Javasript Type Coercion Test</h1>
         <button onClick={() => setStart(true)}>Start</button>
       </div>
     );
@@ -46,7 +46,7 @@ function App() {
 
       <div className="flex flex-col justify-center items-center h-[100vh] gap-5">
         <p>Is this correct?</p>
-        <h1 className="text-2xl md:text-5xl">{operation?.toString()}</h1>
+        <h1 className="text-xl md:text-5xl">{operation?.toString()}</h1>
 
         <div className="flex flex-row gap-1">
           <button 

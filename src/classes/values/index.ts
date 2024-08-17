@@ -18,7 +18,9 @@ export const RANDOM_VALUES: Record<string, any[]> = {
     true,
     false,
     "1",
-    "'xyz'",
+    Infinity,
+    "'true'",
+    "'false'",
     "0",
     "-1",
     NaN
@@ -32,7 +34,11 @@ export const RANDOM_VALUES: Record<string, any[]> = {
     "'0'",
     "'24'",
     "'Hello World!'",
-    "'-1'"
+    "'-1'",
+    "'null'",
+    "'Infinity'",
+    "'undefined'",
+    "''",
   ],
   "VNumber": [
     'undefined',
