@@ -8,7 +8,7 @@ function App() {
   const [operation, setOperation] = useState<Operation>();
   const [choice, setChoice] = useState<boolean|null>(null);
   const [response, setResponse] = useState({
-    error: false,
+    success: false,
     text: ''
   });
 
@@ -19,16 +19,16 @@ function App() {
   function nextOperation() {
     setOperation(new OperationFactory().makeRandom());
     setResponse({
-      error: false,
+      success: false,
       text: ''
     });
-    setChoice(false);
+    setChoice(null);
   }
 
   function evaluate() {
     const res = operation?.evaluate(!!choice); 
     setResponse({
-      error: !!res,
+      success: !!res,
       text: res ? "You are correct!" : "You are wrong!"
     });
   }
@@ -61,7 +61,7 @@ function App() {
         </div>
 
         {response.text.length ? (
-          <p className={`${!response.error ? "text-red-500" : "text-green-500"}`}>{response.text}</p>
+          <p className={`${!response.success ? "text-red-500" : "text-green-500"}`}>{response.text}</p>
         ) : <></>}
 
         <div className="flex flex-row gap-1">

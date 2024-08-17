@@ -14,6 +14,10 @@ class OperationFactory implements Factory<Operation> {
   }
   
   makeRandom(): Operation {
+    return this.makeRandomBinaryOperation();
+  }
+  
+  makeRandomBinaryOperation() {
     return new BinaryOperation(
       new OperandFactory().makeRandom(),
       new OperandFactory().makeRandom(),
