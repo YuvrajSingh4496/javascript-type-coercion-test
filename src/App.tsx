@@ -3,6 +3,23 @@ import './App.css';
 import { Operation } from './types/global';
 import OperationFactory from './classes/factories/operation-factory';
 
+function GitHub() {
+  return (
+    <div className="fixed p-2 bottom-5 right-5 dark:bg-white rounded-md border-2 border-black">
+      <a
+      className="flex flex-row gap-1 items-center justify-center" 
+      href="https://github.com/YuvrajSingh4496/javascript-type-coercion-test">
+      <img 
+        src="https://pngimg.com/uploads/github/github_PNG80.png" 
+        alt="Github"
+        className="h-5 w-5" 
+        />
+        <p>GitHub</p>
+      </a>
+    </div>
+  )
+}
+
 function App() {
   const [start, setStart] = useState(false);
   const [operation, setOperation] = useState<Operation>();
@@ -35,16 +52,16 @@ function App() {
 
   if (!start) {
     return (
-      <div className="flex flex-col justify-center items-center h-[100vh] gap-5">
+      <div className="flex flex-col justify-center items-center h-[90vh] gap-5">
         <h1 className="text-xl md:text-5xl">Javasript Type Coercion Test</h1>
         <button onClick={() => setStart(true)}>Start</button>
+        <GitHub />
       </div>
     );
   }
 
   return (
-
-      <div className="flex flex-col justify-center items-center h-[100vh] gap-5">
+      <div className="flex flex-col justify-center items-center h-[90vh] gap-5">
         <p>Is this correct?</p>
         <h1 className="text-xl md:text-5xl">{operation?.toString()}</h1>
 
@@ -71,6 +88,7 @@ function App() {
             <button className="px-3 py-2 rounded-md border-2 border-white" onClick={nextOperation}>Next</button>
           ) : <></>}
         </div>
+        <GitHub />
       </div>
   );
 }
