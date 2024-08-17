@@ -6,7 +6,7 @@ import WrapperFactory from "./wrapper-factory";
 
 class OperandFactory implements Factory<Operand> {
   
-  make(args?: any): Operand {
+  make(): Operand {
     return new PrimitiveOperand(
       new ValueFactory().make(),
       new OperatorFactory().make(),

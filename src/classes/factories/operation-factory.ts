@@ -5,7 +5,7 @@ import OperatorFactory from "./operator-factory";
 
 class OperationFactory implements Factory<Operation> {
 
-  make(args?: any): Operation {
+  make(): Operation {
     return new BinaryOperation(
       new OperandFactory().make(),
       new OperandFactory().make(),

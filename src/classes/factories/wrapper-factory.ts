@@ -4,7 +4,7 @@ import NullWrapper from '../wrappers/null-wrapper';
 import _ from "lodash";
 
 class WrapperFactory implements Factory<Wrapper> {
-  make(args?: any): Wrapper {
+  make(): Wrapper {
     return new NullWrapper();
   }
   makeRandom(): Wrapper {

@@ -5,7 +5,7 @@ import _ from "lodash";
 import { RANDOM_VALUES } from '../values/index';
 
 class ValueFactory implements Factory<Value<any>> {
-    make(args?: any): Value<any> {
+    make(): Value<any> {
       return new VNull(null);      
     }
     

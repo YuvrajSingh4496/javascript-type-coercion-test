@@ -4,7 +4,7 @@ import { RELATIONAL_OPERATORS, UNARY_OPERATORS } from "../operators";
 import _ from "lodash";
 
 class OperatorFactory implements Factory<Operator> {
-  make(args?: any): Operator {
+  make(): Operator {
     return new EqualityOperator();
   }
 

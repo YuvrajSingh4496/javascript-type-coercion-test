@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { Operation } from './types/global';
 import OperationFactory from './classes/factories/operation-factory';
