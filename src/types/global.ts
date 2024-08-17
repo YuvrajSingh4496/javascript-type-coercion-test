@@ -2,7 +2,7 @@ export interface Stringify {
   toString(): string;
 }
 
-export interface Wrapper extends Stringify {
+export interface Wrapper {
   wrap(value: string): string
 }
 
