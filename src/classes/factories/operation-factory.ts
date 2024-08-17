@@ -24,6 +24,17 @@ class OperationFactory implements Factory<Operation> {
       new OperatorFactory().makeRandom()
     );
   }
+
+  makeNOperations(n: number): Operation[] {
+    const operations = [];
+    let i = 0;
+    while (i < n) {
+      operations.push(this.makeRandomBinaryOperation());
+      i += 1;
+    }
+
+    return operations;
+  }
 }
 
 export default OperationFactory;

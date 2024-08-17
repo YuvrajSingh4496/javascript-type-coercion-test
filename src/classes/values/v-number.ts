@@ -1,4 +1,4 @@
-import PrimitiveValue from "../primitive-value";
+import PrimitiveValue from "../operand-value";
 
 class VNumber extends PrimitiveValue<number> {
   constructor(value: number) {

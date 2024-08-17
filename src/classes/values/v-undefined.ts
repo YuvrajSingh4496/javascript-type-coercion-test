@@ -1,4 +1,4 @@
-import PrimitiveValue from "../primitive-value";
+import PrimitiveValue from "../operand-value";
 
 class VUndefined extends PrimitiveValue<undefined> {
   constructor(value: undefined) {

@@ -1,4 +1,4 @@
-import PrimitiveValue from "../primitive-value";
+import PrimitiveValue from "../operand-value";
 
 class VString extends PrimitiveValue<string> {
   constructor(value: string) {

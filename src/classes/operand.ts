@@ -1,6 +1,6 @@
-import { Operand, Operator, Value, Wrapper } from '../types/global';
+import { Operand as IOperand, Operator, Value, Wrapper } from '../types/global';
 
-class PrimitiveOperand<T> implements Operand {
+class Operand<T> implements IOperand {
   operand: Value<T>;
   operator: Operator;
   wrapper: Wrapper;
@@ -17,4 +17,4 @@ class PrimitiveOperand<T> implements Operand {
   }
 }
 
-export default PrimitiveOperand;
+export default Operand;

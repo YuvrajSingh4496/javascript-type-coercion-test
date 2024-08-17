@@ -1,40 +1,27 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { Operation } from './types/global';
-import OperationFactory from './classes/factories/operation-factory';
-
-function GitHub() {
-  return (
-    <div className="fixed p-2 bottom-5 right-5 dark:bg-white rounded-md border-2 border-black">
-      <a
-      className="flex flex-row gap-1 items-center justify-center" 
-      href="https://github.com/YuvrajSingh4496/javascript-type-coercion-test">
-      <img 
-        src="https://pngimg.com/uploads/github/github_PNG80.png" 
-        alt="Github"
-        className="h-5 w-5" 
-        />
-        <p>GitHub</p>
-      </a>
-    </div>
-  )
-}
+import OperationManager from './classes/operation-manager';
+import _ from "lodash";
+import GitHubButton from './components/github-button';
+import Checkbox from './components/checkbox';
 
 function App() {
   const [start, setStart] = useState(false);
-  const [operation, setOperation] = useState<Operation>();
+  const [operation, setOperation] = useState<OperationManager>();
   const [choice, setChoice] = useState<boolean|null>(null);
   const [response, setResponse] = useState({
     success: false,
     text: ''
   });
+  const [hard, setHard] = useState(false);
+  const [streak, setStreak] = useState(0);
 
   useEffect(() => {
-    setOperation(new OperationFactory().makeRandom());
+    setOperation(new OperationManager().makeRandom(1, hard ? 5 : 1));
   }, [start]);
   
   function nextOperation() {
-    setOperation(new OperationFactory().makeRandom());
+    setOperation(new OperationManager().makeRandom(1, hard ? 5 : 1));
     setResponse({
       success: false,
       text: ''
@@ -43,11 +30,20 @@ function App() {
   }
 
   function evaluate() {
-    const res = operation?.evaluate(!!choice); 
+    if (choice === null) {
+      return setResponse({
+        success: false,
+        text: "Please choose an option first!"
+      });
+    }
+
+    const res = operation?.evaluate(choice); 
     setResponse({
       success: !!res,
       text: res ? "You are correct!" : "You are wrong!"
     });
+    
+    setStreak(prev => res ? prev + 1: 0);
   }
 
   if (!start) {
@@ -55,7 +51,7 @@ function App() {
       <div className="flex flex-col justify-center items-center h-[90vh] gap-5">
         <h1 className="text-xl md:text-5xl">Javasript Type Coercion Test</h1>
         <button onClick={() => setStart(true)}>Start</button>
-        <GitHub />
+        <GitHubButton />
       </div>
     );
   }
@@ -88,7 +84,17 @@ function App() {
             <button className="px-3 py-2 rounded-md border-2 border-white" onClick={nextOperation}>Next</button>
           ) : <></>}
         </div>
-        <GitHub />
+        <GitHubButton />
+
+        <div className="fixed p-2 top-5 right-5 dark:bg-white rounded-md border-2 border-black">
+          <div className="flex flex-col gap-2 text-blue-500 items-start">
+            <p>Streak: {streak}</p>
+            <div className="flex flex-row gap-1">
+              <p>Hard difficulty: </p>
+              <Checkbox value={hard} onChange={(v) => setHard(v)} />
+            </div>
+          </div>
+        </div>
       </div>
   );
 }

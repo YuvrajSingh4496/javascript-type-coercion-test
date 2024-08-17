@@ -21,10 +21,11 @@ export interface Operand extends Stringify {
   wrapper: Wrapper;
 }
 
-export interface Operation {
+export interface Evaluates {
   evaluate(_case: boolean): boolean;
-  toString(): string;
 }
+
+export interface Operation extends Evaluates, Stringify {};
 
 export interface Factory<T> {
   make(args?: any): T;

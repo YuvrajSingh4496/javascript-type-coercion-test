@@ -1,5 +1,5 @@
 import { Operand, Factory } from "../../types/global";
-import PrimitiveOperand from "../primitive-operand";
+import PrimitiveOperand from "../operand";
 import OperatorFactory from "./operator-factory";
 import ValueFactory from "./value-factory";
 import WrapperFactory from "./wrapper-factory";

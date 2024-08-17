@@ -1,5 +1,5 @@
 import { Value } from '../types/global';
-class PrimitiveValue<T> implements Value<T> {
+class OperandValue<T> implements Value<T> {
   value: T;
 
   constructor(value: T) {
@@ -16,4 +16,4 @@ class PrimitiveValue<T> implements Value<T> {
   }
 }
 
-export default PrimitiveValue;
+export default OperandValue;
